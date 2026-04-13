@@ -1,0 +1,991 @@
+add_action('wp_body_open', 'global_header');
+function global_header() {
+?>
+
+
+
+<!--HEADER-->
+<!--normalize css-->
+<style>
+	/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+	
+	/**
+	 * 1. Set default font family to sans-serif.
+	 * 2. Prevent iOS text size adjust after orientation change, without disabling
+	 *    user zoom.
+	 */
+	
+	html {
+		font-family: sans-serif; /* 1 */
+		-ms-text-size-adjust: 100%; /* 2 */
+		-webkit-text-size-adjust: 100%; /* 2 */
+	}
+	
+	/**
+	 * Remove default margin.
+	 */
+	
+	body {
+		margin: 0;
+	}
+	
+	/* HTML5 display definitions
+	   ========================================================================== */
+	
+	/**
+	 * Correct `block` display not defined for any HTML5 element in IE 8/9.
+	 * Correct `block` display not defined for `details` or `summary` in IE 10/11
+	 * and Firefox.
+	 * Correct `block` display not defined for `main` in IE 11.
+	 */
+	
+	article,
+	aside,
+	details,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	main,
+	menu,
+	nav,
+	section,
+	summary {
+		display: block;
+	}
+	
+	/**
+	 * 1. Correct `inline-block` display not defined in IE 8/9.
+	 * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+	 */
+	
+	audio,
+	canvas,
+	progress,
+	video {
+		display: inline-block; /* 1 */
+		vertical-align: baseline; /* 2 */
+	}
+	
+	/**
+	 * Prevent modern browsers from displaying `audio` without controls.
+	 * Remove excess height in iOS 5 devices.
+	 */
+	
+	audio:not([controls]) {
+		display: none;
+		height: 0;
+	}
+	
+	/**
+	 * Address `[hidden]` styling not present in IE 8/9/10.
+	 * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+	 */
+	
+	[hidden],
+	template {
+		display: none;
+	}
+	
+	/* Links
+	   ========================================================================== */
+	
+	/**
+	 * Remove the gray background color from active links in IE 10.
+	 */
+	a {
+		background-color: transparent;
+	}
+	
+	/**
+	 * Improve readability when focused and also mouse hovered in all browsers.
+	 */
+	a:active,
+	a:hover {
+		outline: 0;
+	}
+	
+	p {
+		margin: 0;
+	}
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	img {
+		border-style: none;
+		height: auto;
+		max-width: 100%;
+	}
+	
+	/* Text-level semantics
+	   ========================================================================== */
+	
+	/**
+	 * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+	 */
+	
+	abbr[title] {
+		border-bottom: 1px dotted;
+	}
+	
+	/**
+	 * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+	 */
+	
+	b,
+	strong {
+		font-weight: bold;
+	}
+	
+	/**
+	 * Address styling not present in Safari and Chrome.
+	 */
+	
+	dfn {
+		font-style: italic;
+	}
+	
+	/**
+	 * Address styling not present in IE 8/9.
+	 */
+	
+	mark {
+		background: #ff0;
+		color: #000;
+	}
+	
+	/**
+	 * Address inconsistent and variable font size in all browsers.
+	 */
+	
+	small {
+		font-size: 80%;
+	}
+	
+	/**
+	 * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+	 */
+	
+	sub,
+	sup {
+		font-size: 75%;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+	
+	sup {
+		top: -0.5em;
+	}
+	
+	sub {
+		bottom: -0.25em;
+	}
+	
+	/* Embedded content
+	   ========================================================================== */
+	
+	/**
+	 * Remove border when inside `a` element in IE 8/9/10.
+	 */
+	
+	img {
+		border: 0;
+	}
+	
+	/**
+	 * Correct overflow not hidden in IE 9/10/11.
+	 */
+	
+	svg:not(:root) {
+		overflow: hidden;
+	}
+	
+	/* Grouping content
+	   ========================================================================== */
+	
+	/**
+	 * Address margin not present in IE 8/9 and Safari.
+	 */
+	
+	figure {
+		margin: 0;
+	}
+	
+	/**
+	 * Address differences between Firefox and other browsers.
+	 */
+	
+	hr {
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
+		height: 0;
+	}
+	
+	/**
+	 * Contain overflow in all browsers.
+	 */
+	
+	pre {
+		overflow: auto;
+	}
+	
+	/**
+	 * Address odd `em`-unit font size rendering in all browsers.
+	 */
+	
+	code,
+	kbd,
+	pre,
+	samp {
+		font-family: monospace, monospace;
+		font-size: 1em;
+	}
+	
+	/* Forms
+	   ========================================================================== */
+	
+	/**
+	 * Known limitation: by default, Chrome and Safari on OS X allow very limited
+	 * styling of `select`, unless a `border` property is set.
+	 */
+	
+	/**
+	 * 1. Correct color not being inherited.
+	 *    Known issue: affects color of disabled elements.
+	 * 2. Correct font properties not being inherited.
+	 * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+	 */
+	
+	button,
+	input,
+	optgroup,
+	select,
+	textarea {
+		color: inherit; /* 1 */
+		font: inherit; /* 2 */
+		margin: 0; /* 3 */
+	}
+	
+	/**
+	 * Address `overflow` set to `hidden` in IE 8/9/10/11.
+	 */
+	
+	button {
+		overflow: visible;
+	}
+	
+	/**
+	 * Address inconsistent `text-transform` inheritance for `button` and `select`.
+	 * All other form control elements do not inherit `text-transform` values.
+	 * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+	 * Correct `select` style inheritance in Firefox.
+	 */
+	
+	button,
+	select {
+		text-transform: none;
+	}
+	
+	/**
+	 * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+	 *    and `video` controls.
+	 * 2. Correct inability to style clickable `input` types in iOS.
+	 * 3. Improve usability and consistency of cursor style between image-type
+	 *    `input` and others.
+	 */
+	
+	button,
+	html input[type="button"], /* 1 */
+	input[type="reset"],
+	input[type="submit"] {
+		-webkit-appearance: button; /* 2 */
+		cursor: pointer; /* 3 */
+	}
+	
+	/**
+	 * Re-set default cursor for disabled elements.
+	 */
+	
+	button[disabled],
+	html input[disabled] {
+		cursor: default;
+	}
+	
+	/**
+	 * Remove inner padding and border in Firefox 4+.
+	 */
+	
+	button::-moz-focus-inner,
+	input::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+	
+	/**
+	 * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+	 * the UA stylesheet.
+	 */
+	
+	input {
+		line-height: normal;
+	}
+	
+	/**
+	 * It's recommended that you don't attempt to style these elements.
+	 * Firefox's implementation doesn't respect box-sizing, padding, or width.
+	 *
+	 * 1. Address box sizing set to `content-box` in IE 8/9/10.
+	 * 2. Remove excess padding in IE 8/9/10.
+	 */
+	
+	input[type="checkbox"],
+	input[type="radio"] {
+		box-sizing: border-box; /* 1 */
+		padding: 0; /* 2 */
+	}
+	
+	/**
+	 * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+	 * `font-size` values of the `input`, it causes the cursor style of the
+	 * decrement button to change from `default` to `text`.
+	 */
+	
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		height: auto;
+	}
+	
+	/**
+	 * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+	 * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+	 *    (include `-moz` to future-proof).
+	 */
+	
+	input[type="search"] {
+		-webkit-appearance: textfield; /* 1 */
+		-moz-box-sizing: content-box;
+		-webkit-box-sizing: content-box; /* 2 */
+		box-sizing: content-box;
+	}
+	
+	/**
+	 * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+	 * Safari (but not Chrome) clips the cancel button when the search input has
+	 * padding (and `textfield` appearance).
+	 */
+	
+	input[type="search"]::-webkit-search-cancel-button,
+	input[type="search"]::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+	
+	/**
+	 * Define consistent border, margin, and padding.
+	 */
+	
+	fieldset {
+		border: 1px solid #c0c0c0;
+		margin: 0 2px;
+		padding: 0.35em 0.625em 0.75em;
+	}
+	
+	/**
+	 * 1. Correct `color` not being inherited in IE 8/9/10/11.
+	 * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+	 */
+	
+	legend {
+		border: 0; /* 1 */
+		padding: 0; /* 2 */
+	}
+	
+	/**
+	 * Remove default vertical scrollbar in IE 8/9/10/11.
+	 */
+	
+	textarea {
+		overflow: auto;
+	}
+	
+	/**
+	 * Don't inherit the `font-weight` (applied by a rule above).
+	 * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+	 */
+	
+	optgroup {
+		font-weight: bold;
+	}
+	
+	/* Tables
+	   ========================================================================== */
+	
+	/**
+	 * Remove most spacing between table cells.
+	 */
+	
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	
+	td,
+	th {
+		padding: 0;
+	}
+</style>
+
+<style>
+	:root {
+		--white: #ffffff;
+		--black: #000000;
+		--light-violet: #7965C1;
+		--mid-violet: #44369D;
+		--dark-violet: #1B073A;
+		--yellow: #F6ED50;
+		--main-bg: #FBFAFF;
+		--page-width: 1320px;
+		--shadow-block: 0 4px 10px #7965c14d;
+		
+		--font-sans: 'FunnelSans', sans-serif;
+		--font-display: 'FunnelDisplay', sans-serif;
+		
+		--font-regular: 400;
+		--font-bold: 600;
+	}
+	
+	@font-face {
+		font-family: 'FunnelSans';
+		src: url('https://uni-luma.com/wp-content/uploads/2026/04/Custom-FunnelSans-Regular.ttf') format('truetype');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	
+	@font-face {
+		font-family: 'FunnelSans';
+		src: url('https://uni-luma.com/wp-content/uploads/2026/04/Custom-FunnelSans-SemiBold.ttf') format('truetype');
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+	
+	@font-face {
+		font-family: 'FunnelDisplay';
+		src: url('https://uni-luma.com/wp-content/uploads/2026/04/Custom-FunnelDisplay-Regular.ttf') format('truetype');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	
+	@font-face {
+		font-family: 'FunnelDisplay';
+		src: url('https://uni-luma.com/wp-content/uploads/2026/04/Custom-FunnelDisplay-SemiBold.ttf') format('truetype');
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		font-family: var(--font-sans);
+		background-color: var(--main-bg);
+		overflow-x: hidden;
+		
+		&.active {
+			overflow: hidden;
+		}
+	}
+	
+	.woocommerce-breadcrumb {
+		display: none;
+	}
+	
+	[id="wpadminbar"] ~ .wrapper {
+		margin-top: 92px;
+	}
+	
+	.header {
+		position: relative;
+		margin: 60px auto;
+		padding: 0 60px;
+		
+		/*position: fixed;*/
+		/*left: 50%;*/
+		/*z-index: 100;*/
+		/*width: 100%;*/
+		/*max-width: var(--page-width);*/
+		/*transform: translateX(-50%);*/
+		
+		.header-wrapper {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			z-index: 100;
+			padding: 10px 40px;
+			margin: 0 auto;
+			max-width: var(--page-width);
+			background: #DFDAF3;
+			border: 1px solid var(--light-violet);
+			border-radius: 50px;
+			box-sizing: border-box;
+		}
+		
+		.logo a {
+			font-size: 22px;
+			line-height: 1;
+			color: var(--dark-violet);
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 15px;
+		}
+		
+		.navigation-main__primary {
+			.menu {
+				display: flex;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				
+				li {
+					a {
+						display: block;
+						font-family: 'Funnel_SemiBold', sans-serif;
+						font-size: 18px;
+						line-height: 1;
+						color: var(--dark-violet);
+						text-decoration: none;
+						padding: 9px 24px;
+						border-radius: 50px;
+						transition: all 0.5s ease;
+						
+						&:hover,
+						&:focus,
+						&:active {
+							color: var(--light-violet);
+						}
+						
+						&.active {
+							color: var(--white);
+							background-color: var(--light-violet);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.header,
+	.custom-page,
+	.footer {
+		a {
+			color: var(--dark-violet);
+			text-decoration: none;
+			transition: all 0.5s ease;
+			
+			&:hover {
+				color: var(--mid-violet);
+			}
+		}
+	}
+	
+	.block-title {
+		font-family: var(--font-display);
+		font-weight: var(--font-bold);
+		position: relative;
+		text-align: center;
+		color: var(--dark-violet);
+		font-size: 50px;
+		line-height: 54px;
+		margin: 0 auto;
+		
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			background-repeat: no-repeat;
+		}
+	}
+	
+	.button_cta {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		
+		a.button {
+			display: block;
+			font-size: 18px;
+			line-height: 22px;
+			color: var(--white);
+			padding: 12px 24px;
+			text-decoration: none;
+			text-transform: uppercase;
+			text-align: center;
+			min-width: 315px;
+			border-radius: 30px;
+			background-color: var(--light-violet);
+			border: 2px solid var(--light-violet);
+			box-sizing: border-box;
+			
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: var(--mid-violet);
+				border-color: var(--mid-violet);
+				
+				& + .arrow-icon {
+					rotate: -45deg;
+					background-color: var(--yellow);
+					background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/arrow-black.svg');
+				}
+			}
+		}
+		
+		.arrow-icon {
+			margin: 0;
+			width: 50px;
+			height: 50px;
+			transition: all 0.5s ease;
+			background-color: var(--light-violet);
+			background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/arrow-white.svg');
+			background-size: 24px auto;
+			background-repeat: no-repeat;
+			background-position: center;
+			border-radius: 50%;
+		}
+	}
+	
+	.button_secondary_cta {
+		a.button {
+			display: block;
+			font-size: 18px;
+			line-height: 22px;
+			color: var(--mid-violet);
+			padding: 12px 24px;
+			text-decoration: none;
+			text-transform: uppercase;
+			text-align: center;
+			min-width: 250px;
+			border: 2px solid var(--mid-violet);
+			border-radius: 30px;
+			background-color: var(--white);
+			box-sizing: border-box;
+			
+			&:hover,
+			&:focus,
+			&:active {
+				color: var(--white);
+				background-color: var(--mid-violet);
+			}
+		}
+	}
+	
+	.custom-page {
+		font-family: var(--font-sans);
+		padding: 0 60px;
+		overflow: hidden;
+	}
+	
+	.page-content {
+		padding-bottom: 100px;
+	}
+	
+	.block-wrapper {
+		max-width: var(--page-width);
+		margin-left: auto;
+		margin-right: auto;
+		box-sizing: content-box;
+	}
+	
+	video {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: var(--black);
+		border-radius: 20px;
+		overflow: hidden;
+	}
+	
+	@media only screen and (min-width: 1025px) {
+		.mobile {
+			display: none;
+		}
+	}
+	
+	@media only screen and (max-width: 1025px) {
+		.header {
+			padding: 0 20px;
+			
+			&.active {
+				.overlay-menu {
+					opacity: 1;
+					z-index: 5;
+				}
+				
+				.hamburger-menu {
+					.menu-icon {
+						&.menu-open {
+							opacity: 0;
+						}
+						
+						&.menu-close {
+							opacity: 1;
+						}
+					}
+				}
+			}
+			
+			.overlay-menu {
+				position: fixed;
+				z-index: -1;
+				opacity: 0;
+				top: 0;
+				right: 0;
+				width: 100%;
+				min-width: 320px;
+				height: 100%;
+				background-color: var(--main-bg);
+				transition: all 0.8s ease;
+			}
+			
+			.header-wrapper {
+				padding: 6px 20px;
+				user-select: none;
+			}
+			
+			.navigation-main__primary {
+				position: fixed;
+				z-index: 10;
+				top: -100%;
+				right: 20px;
+				width: calc(100% - 44px);
+				min-width: 320px;
+				margin-top: 0;
+				border: 2px dashed var(--light-violet);
+				border-radius: 24px;
+				background: var(--white);
+				transition: all 0.8s ease;
+				box-shadow: var(--shadow-block);
+				
+				&.active {
+					top: 160px;
+					overflow: hidden;
+				}
+				
+				.menu {
+					flex-direction: column;
+					align-items: center;
+					padding: 90px 20px;
+					
+					li {
+						margin-bottom: 20px;
+						
+						a {
+							font-size: 26px;
+							line-height: 30px;
+							padding: 10px 20px;
+							display: block;
+						}
+					}
+				}
+			}
+			
+			.hamburger-menu {
+				position: relative;
+				z-index: 10;
+				top: 0;
+				right: 0;
+				width: 40px;
+				height: 40px;
+				transition: all 0.5s ease;
+				cursor: pointer;
+				
+				&.mobile {
+					display: block;
+				}
+				
+				.menu-icon {
+					position: absolute;
+					top: 3px;
+					left: 3px;
+					display: block;
+					width: 34px;
+					height: 34px;
+					transition: 0.5s ease-in-out;
+					cursor: pointer;
+					
+					&.menu-open {
+						opacity: 1;
+					}
+					
+					&.menu-close {
+						opacity: 0;
+					}
+				}
+			}
+		}
+		
+		.block-title {
+			font-size: 36px;
+			line-height: 38px;
+		}
+		
+		.button_cta {
+			a.button {
+				font-size: 18px;
+				line-height: 20px;
+				padding: 10px;
+				min-width: calc(100% - 44px);
+			}
+			
+			.arrow-icon {
+				width: 44px;
+				height: 44px;
+				flex-shrink: 0;
+			}
+		}
+		
+		.button_secondary_cta {
+			a.button {
+				font-size: 18px;
+				line-height: 20px;
+				padding: 10px;
+			}
+		}
+	}
+</style>
+
+<!--header html-->
+<header class="header">
+	<div class="overlay-menu"></div>
+	
+	<div class="header-wrapper">
+		<span class="logo">
+			<a href="<?php echo home_url(); ?>">
+				<img src="https://uni-luma.com/wp-content/uploads/2026/04/header-logo.png" alt="UniLuma"
+				     width="122" height="auto">
+			</a>
+		</span>
+		
+		<nav class="navigation-main__primary">
+			<ul class="menu">
+				<li>
+					<a class="nav_link" href="<?php echo home_url(); ?>">Home</a>
+				</li>
+				<li>
+					<a class="nav_link" href="#about_us">Wer wir sind</a>
+				</li>
+				<li>
+					<a class="nav_link" href="/wuwiso/">WU WiSo</a>
+				</li>
+				<li>
+					<a class="nav_link" href="#our_services">Unsere Leistungen</a>
+				</li>
+				<li>
+					<a class="nav_link" href="#top_wrapper">FAQ</a>
+				</li>
+				<li>
+					<a class="nav_link" href="/kontakt/">Kontakt</a>
+				</li>
+			</ul>
+		</nav>
+		
+		<div class="hamburger-menu mobile">
+			<img class="menu-icon menu-open" src="https://uni-luma.com/wp-content/uploads/2026/04/menu_open.svg"
+			     alt="menu">
+			<img class="menu-icon menu-close" src="https://uni-luma.com/wp-content/uploads/2026/04/menu_close.svg"
+			     alt="menu">
+		</div>
+	</div>
+</header>
+
+<!--header script-->
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// Smooth scroll
+		function smoothScrollPrimary() {
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					
+					document.querySelector(this.getAttribute('href')).scrollIntoView({
+						behavior: 'smooth'
+					});
+				});
+			});
+		}
+		
+		smoothScrollPrimary()
+		
+		// Active inks
+		function activeLink() {
+			const links = document.querySelectorAll(".navigation-main__primary .nav_link");
+			
+			const currentPath = window.location.pathname;
+			
+			links.forEach(link => {
+				const href = link.getAttribute("href");
+				
+				if (!href) return;
+				
+				// hash links → ignore active state (or handle separately if needed)
+				if (href.startsWith("#")) return;
+				
+				const linkPath = new URL(link.href, window.location.origin).pathname;
+				
+				link.classList.toggle("active", linkPath === currentPath);
+			});
+		}
+		
+		activeLink();
+		
+		activeLink();
+		
+		// Mobile menu
+		function mobileMenu() {
+			const header = document.querySelector('header');
+			const body = document.getElementsByTagName("body")[0];
+			const mobileIcon = header.querySelector('.hamburger-menu');
+			const mobileMenu = header.querySelector('.navigation-main__primary');
+			const overlay = document.querySelector('.overlay-menu');
+			const menuLinks = document.querySelectorAll(".menu a[href^='#']");
+			
+			menuLinks.forEach(menuLink => {
+				menuLink.addEventListener('click', function (element) {
+					element.preventDefault();
+					mobileMenu.classList.toggle('active');
+					header.classList.toggle('active');
+				});
+			});
+			
+			mobileIcon.addEventListener('click', function () {
+				mobileMenu.classList.toggle('active');
+				header.classList.toggle('active');
+				body.classList.toggle('active');
+			});
+			
+			overlay.addEventListener('click', function () {
+				mobileMenu.classList.remove('active');
+				header.classList.remove('active');
+				body.classList.remove('active');
+			});
+		}
+		
+		mobileMenu();
+	});
+</script>
+<!--HEADER-->
+
+
+<?php
+}

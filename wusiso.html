@@ -1,0 +1,530 @@
+<!--WISO-->
+<style>
+	.wiso-banner {
+		.wiso-banner-content {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 20px;
+			
+			.container_left {
+				display: flex;
+				flex-direction: column;
+				width: 790px;
+				
+				.container_left_top {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					padding: 40px;
+					background: var(--white);
+					border-radius: 30px 30px 30px 30px;
+					border: 2px dashed var(--light-violet);
+					box-shadow: var(--shadow-block);
+					
+					.container_left_primary {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						position: relative;
+						overflow: visible;
+						
+						.container_left-wrap {
+							display: flex;
+							flex-direction: column;
+							width: min(100%, 450px);
+						}
+						
+						.container_left_top--image {
+							width: min(100%, 120px);
+							margin-right: 40px;
+							transform: rotate(-30deg);
+						}
+						
+						.block-title {
+							font-size: 44px;
+							line-height: 50px;
+							text-align: left;
+							margin-top: 24px;
+						}
+						
+						.block-label {
+							text-align: center;
+							padding: 5px 24px;
+							width: max-content;
+							border: 2px solid var(--light-violet);
+							background: var(--yellow);
+							border-radius: 50px 50px 50px 50px;
+							z-index: 1;
+							transition: all 0.5s ease;
+							transform-origin: center;
+							
+							.block-label-text {
+								line-height: 1;
+								text-transform: uppercase;
+								font-size: 20px;
+								font-weight: 400;
+								color: var(--mid-violet);
+								background-color: transparent;
+							}
+							
+							&:hover,
+							&:focus,
+							&:active {
+								transform: rotate(2.9deg);
+							}
+						}
+					}
+					
+					.container_left_secondary {
+						display: flex;
+						flex-direction: column;
+						gap: 60px;
+						
+						.block-text {
+							width: min(100%, 610px);
+							
+							p {
+								font-size: 20px;
+								line-height: 1.2;
+								color: var(--black);
+								margin: 0;
+							}
+						}
+					}
+					
+					.container_button_cta {
+						display: flex;
+						flex-direction: row;
+						gap: 40px;
+					}
+				}
+			}
+			
+			.container_right {
+				width: 414px;
+				
+				.container_right-iphone {
+					position: relative;
+					width: 100%;
+					height: auto;
+					user-select: none;
+					
+					img {
+						position: relative;
+						z-index: 1;
+						top: 60px;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						transition: all 0.5s ease;
+					}
+					
+					&:hover {
+						img {
+							top: 20px;
+							transform: scale(1.05);
+						}
+					}
+					
+					&:before,
+					&:after {
+						content: '';
+						display: block;
+						position: absolute;
+						z-index: 3;
+						background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/arrow-curve.svg');
+						background-repeat: no-repeat;
+					}
+					
+					&:before {
+						top: 25px;
+						left: -70px;
+						width: 160px;
+						height: 160px;
+						background-size: 160px 135px;
+						transform: rotate(-45deg);
+					}
+					
+					&:after {
+						bottom: 230px;
+						left: -170px;
+						width: 130px;
+						height: 130px;
+						background-size: 130px 135px;
+						transform: rotate(75deg) scaleY(-1);;
+					}
+				}
+			}
+		}
+	}
+	
+	.wiso-kurs {
+		position: relative;
+		z-index: 2;
+		padding: 80px 0 100px 0;
+		margin-top: -220px;
+		margin-left: -60px;
+		margin-right: -60px;
+		border-radius: 30px;
+		overflow: hidden;
+		box-shadow: var(--shadow-block);
+		
+		.wiso-kurs-bg {
+			position: absolute;
+			z-index: -1;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.block-wrapper {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		
+		.block-title {
+			color: var(--white);
+			margin-bottom: 60px;
+		}
+		
+		.wiso-kurs-content {
+			.wiso-kurs-video {
+				position: relative;
+				width: 845px;
+				height: 500px;
+				margin-left: auto;
+				margin-right: auto;
+				
+				&:before,
+				&:after {
+					content: '';
+					display: block;
+					position: absolute;
+					z-index: 1;
+					width: 150px;
+					height: 150px;
+					background-repeat: no-repeat;
+					background-size: 100%;
+				}
+				
+				&:before {
+					left: -160px;
+					bottom: 0;
+					background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/clouds.svg');
+					transform: scaleX(-1);
+					
+				}
+				
+				&:after {
+					top: 0;
+					right: -150px;
+					background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/clouds.svg');
+				}
+			}
+		}
+	}
+	
+	@media only screen and (max-width: 1024px) {
+		.wiso-banner {
+			.wiso-banner-content {
+				flex-direction: column;
+				gap: 0;
+				
+				.container_left {
+					width: 100%;
+					
+					.container_left_top {
+						gap: 40px;
+						padding-left: 20px;
+						padding-right: 20px;
+						
+						.container_left_primary {
+							.container_left-wrap {
+								width: 100%;
+							}
+							
+							.container_left_top--image {
+								display: none;
+							}
+							
+							.block-label {
+								padding-top: 8px;
+								padding-bottom: 8px;
+								
+								.block-label-text {
+									font-size: 16px;
+								}
+							}
+							
+							.block-title {
+								font-size: 32px;
+								line-height: 44px;
+							}
+						}
+						
+						.container_left_secondary {
+							gap: 40px;
+							
+							.block-text {
+								width: 100%;
+							}
+						}
+						
+						.container_button_cta {
+							flex-direction: column;
+							gap: 15px;
+						}
+					}
+				}
+				
+				.container_right {
+					width: 264px;
+					margin: 0 auto;
+					
+					.container_right-iphone {
+						position: relative;
+						width: 100%;
+						height: auto;
+						
+						img {
+							top: -25px;
+						}
+						
+						&:hover {
+							img {
+								top: 0;
+							}
+						}
+						
+						&:before,
+						&:after {
+							width: 120px;
+							height: 120px;
+							background-size: 100px 80px;
+						}
+						
+						&:before {
+							top: 25px;
+							left: auto;
+							right: -50px;
+							transform: rotate(0deg);
+						}
+						
+						&:after {
+							bottom: 180px;
+							right: auto;
+							left: -30px;
+							transform: rotate(90deg) scaleY(-1);
+						}
+					}
+				}
+			}
+		}
+		
+		.wiso-kurs {
+			padding-top: 40px;
+			padding-bottom: 130px;
+			margin-top: -180px;
+			margin-left: -20px;
+			margin-right: -20px;
+			
+			.block-title {
+				max-width: 70%;
+				margin-bottom: 24px;
+			}
+			
+			.wiso-kurs-content {
+				.wiso-kurs-video {
+					width: 100%;
+					height: auto;
+					
+					&:before,
+					&:after {
+						top: auto;
+						width: 134px;
+						height: 134px;
+						background-size: 100%;
+					}
+					
+					&:before {
+						bottom: -160px;
+						left: auto;
+						right: 130px;
+						background-size: 75%;
+					}
+					
+					&:after {
+						bottom: -130px;
+						left: auto;
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+</style>
+
+<!--wiso html-->
+<main class="custom-page wuwiso">
+	<div class="page-content">
+		<div class="wiso-banner">
+			<div class="block-wrapper">
+				<div class="wiso-banner-content">
+					<div class="container_left">
+						<div class="container_left_top">
+							<div class="container_left_primary">
+								<div class="container_left-wrap">
+									<div class="block-label">
+										<span class="block-label-text">Online-Vorbereitungskurs </span>
+									</div>
+									
+									<h2 class="block-title">WU WISO-Aufnahmeprüfung</h2>
+								</div>
+								
+								<img class="container_left_top--image"
+								     src="https://uni-luma.com/wp-content/uploads/2026/04/birne.svg" width="230"
+								     height="auto">
+							</div>
+							
+							<div class="container_left_secondary">
+								<div class="block-text">
+									<p>Strukturiert auf alle relevanten Themen der Aufnahmeprüfung vorbereiten: <b>Theorie,
+										Deutsch, Logik und Mathe</b>
+									</p>
+								</div>
+								
+								<div class="container_button_cta">
+									<div class="button_cta">
+										<a href="" class="button link_services">Jetzt starten</a>
+										<span class="arrow-icon"></span>
+									</div>
+									
+									<div class="button_secondary_cta">
+										<a href="" class="button link_services">Jetzt starten</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="container_right">
+						<div class="container_right-iphone">
+							<img
+									src="https://uni-luma.com/wp-content/uploads/2026/04/iphone.png"
+									alt=""
+									loading="lazy"
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="wiso-kurs" id="wiso_kurs">
+			<img class="wiso-kurs-bg" src="https://uni-luma.com/wp-content/uploads/2026/04/list-bg-wide.png">
+			
+			<div class="block-wrapper">
+				<h2 class="block-title">Was dich im WISO-Kurs erwartet</h2>
+				
+				<div class="wiso-kurs-content">
+					<div class="wiso-kurs-video">
+						<video class="video" preload="auto" muted controls>
+							<source src="https://uni-luma.com/wp-content/uploads/2026/04/SanFrancisco.mp4"
+							        type="video/mp4">
+						</video>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="our-services" id="">
+			<h2 class="block-title">Dein Weg durch den UniLuma Kurs</h2>
+			
+			<div class="our-services-content">
+				<div class="our-services-blocks">
+					<div class="our-services-block">
+						<a class="our-services-block-link" href="#">
+							<img class="our-services-block-image"
+							     src="https://uni-luma.com/wp-content/uploads/2026/04/book.png" alt="Image">
+							
+							<div class="our-services-block-content">
+								<h4 class="our-services-block-title">Videokurs zur WU WISO-Aufnahmeprüfung</h4>
+								<p class="our-services-block-text">
+									Strukturierte Vorbereitung mit aufgezeichneten Videolektionen, klaren Erklärungen,
+									Übungsaufgaben, Quizzen, Unterlagen und Prüfungssimulationen.
+								</p>
+							</div>
+						</a>
+					</div>
+					
+					<div class="our-services-block">
+						<a class="our-services-block-link" href="#">
+							<img class="our-services-block-image"
+							     src="https://uni-luma.com/wp-content/uploads/2026/04/compass.png" alt="Image">
+							
+							<div class="our-services-block-content">
+								<h4 class="our-services-block-title">Individuelle Studienorientierung</h4>
+								<p class="our-services-block-text">
+									Persönlich vorbereitete Beratung, mit individuelle Präsentation, Analyse deiner
+									Stärken
+									und Orientierung bei der Wahl des passenden Studiums.
+								</p>
+							</div>
+						</a>
+					</div>
+					
+					<div class="our-services-block">
+						<a class="our-services-block-link" href="#">
+							<img class="our-services-block-image"
+							     src="https://uni-luma.com/wp-content/uploads/2026/04/mentoring.png" alt="Image">
+							<div class="our-services-block-content">
+								<h4 class="our-services-block-title">Mentoring für Studierende</h4>
+								<p class="our-services-block-text">
+									Strukturierte Vorbereitung mit aufgezeichneten Videolektionen, klaren Erklärungen,
+									Übungsaufgaben, Quizzen, Unterlagen und Prüfungssimulationen.
+								</p>
+							</div>
+						</a>
+					</div>
+					
+					<div class="our-services-block">
+						<a class="our-services-block-link" href="#">
+							<img class="our-services-block-image"
+							     src="https://uni-luma.com/wp-content/uploads/2026/04/bachelor.png" alt="Image">
+							
+							<div class="our-services-block-content">
+								<h4 class="our-services-block-title">Beratung zur Masterbewerbung</h4>
+								<p class="our-services-block-text">
+									Für Studierende, die ihren nächsten akademischen Schritt gezielt planen und sich
+									fundiert auf ihre Masterbewerbung vorbereiten möchten.
+								</p>
+							</div>
+						</a>
+					</div>
+					
+					<div class="our-services-block">
+						<a class="our-services-block-link" href="#">
+							<img class="our-services-block-image"
+							     src="https://uni-luma.com/wp-content/uploads/2026/04/case.png" alt="Image">
+							
+							<div class="our-services-block-content">
+								<h4 class="our-services-block-title">Unterstützung bei Praktikum und
+									Karriereeinstieg</h4>
+								<p class="our-services-block-text">
+									Für alle, die ihren beruflichen Weg gezielt gestalten möchten, mit persönlicher
+									Beratung, praxisnahen Einblicken und Vernetzungsmöglichkeiten mit Menschen, die in
+									ihrem
+									Fachbereich bereits erfolgreich tätig sind.
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<!--WISO-->

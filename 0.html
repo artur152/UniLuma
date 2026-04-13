@@ -1,0 +1,47 @@
+
+<!--header script-->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// Smooth scroll
+		function smoothScrollPrimary() {
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+
+					document.querySelector(this.getAttribute('href')).scrollIntoView({
+						behavior: 'smooth'
+					});
+				});
+			});
+		}
+		smoothScrollPrimary()
+
+		// Smooth scroll
+		function smoothScroll() {
+			const DURATION   = 500;
+			const SMOOTHNESS = 10;
+
+			document.querySelectorAll('a[href^="#"]').forEach(a => {
+				a.addEventListener('click', e => {
+					e.preventDefault();
+					const target = document.querySelector(a.getAttribute('href'));
+					if (!target) return;
+
+					const start = window.scrollY;
+					const end   = target.getBoundingClientRect().top + start;
+					let t0      = null;
+
+					const step = ts => {
+						if (!t0) t0 = ts;
+						const p = Math.min((ts - t0) / DURATION, 1);
+						window.scrollTo({ top: start - 200 + (end - start) * (1 - Math.pow(1 - p, SMOOTHNESS)) });
+						if (p < 1) requestAnimationFrame(step);
+					};
+
+					requestAnimationFrame(step);
+				});
+			});
+		}
+		smoothScroll();
+	});
+</script>
