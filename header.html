@@ -4,6 +4,7 @@ function global_header() {
 
 
 
+
 <!--HEADER-->
 <!--normalize css-->
 <style>
@@ -14,6 +15,12 @@ function global_header() {
 	 * 2. Prevent iOS text size adjust after orientation change, without disabling
 	 *    user zoom.
 	 */
+	
+	*, *::before, *::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
 	
 	html {
 		font-family: sans-serif; /* 1 */
@@ -306,6 +313,13 @@ function global_header() {
 	input[type="submit"] {
 		-webkit-appearance: button; /* 2 */
 		cursor: pointer; /* 3 */
+		
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: inherit;
+			outline: none;
+		}
 	}
 	
 	/**
@@ -445,10 +459,14 @@ function global_header() {
 		--white: #ffffff;
 		--black: #000000;
 		--light-violet: #7965C1;
+		--light-violet-2: #EEEBF9;
 		--mid-violet: #44369D;
 		--dark-violet: #1B073A;
 		--yellow: #F6ED50;
 		--main-bg: #FBFAFF;
+		--radius-sm: 20px;
+		--radius-md: 30px;
+		--radius-full: 100px;
 		--page-width: 1320px;
 		--shadow-block: 0 4px 10px #7965c14d;
 		
@@ -493,10 +511,14 @@ function global_header() {
 	
 	html {
 		scroll-behavior: smooth;
+		min-height: 100%;
 	}
 	
 	body {
 		font-family: var(--font-sans);
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 		background-color: var(--main-bg);
 		overflow-x: hidden;
 		
@@ -509,21 +531,35 @@ function global_header() {
 		display: none;
 	}
 	
-	[id="wpadminbar"] ~ .wrapper {
-		margin-top: 92px;
+	[id="wpadminbar"] ~ .header {
+		.navigation-main__primary {
+			&.active {
+				top: 180px;
+			}
+		}
+	}
+	
+	.site-footer {
+		display: none;
+	}
+	
+	/* Scroll animation*/
+	.fade-up {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity .6s ease 0.3s, transform .6s ease;
+		
+		&.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 	
 	.header {
 		position: relative;
 		margin: 60px auto;
 		padding: 0 60px;
-		
-		/*position: fixed;*/
-		/*left: 50%;*/
-		/*z-index: 100;*/
-		/*width: 100%;*/
-		/*max-width: var(--page-width);*/
-		/*transform: translateX(-50%);*/
+		width: 100%;
 		
 		.header-wrapper {
 			position: relative;
@@ -607,48 +643,69 @@ function global_header() {
 		color: var(--dark-violet);
 		font-size: 50px;
 		line-height: 54px;
-		margin: 0 auto;
+		margin: 0 auto 80px;
+		width: max-content;
+		max-width: 100%;
 		
 		&:before {
 			content: '';
 			display: block;
 			position: absolute;
 			background-repeat: no-repeat;
+			background-size: 100%;
 		}
 	}
 	
-	.button_cta {
-		align-items: center;
-		display: flex;
-		flex-direction: row;
+	.container_button_cta {
+		width: 100%;
+		user-select: none;
+		
+		.button_cta, .button_secondary_cta {
+			width: 50%;
+			min-width: fit-content;
+		}
+		
+		.button_cta {
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+		}
 		
 		a.button {
-			display: block;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
 			font-size: 18px;
 			line-height: 22px;
-			color: var(--white);
-			padding: 12px 24px;
-			text-decoration: none;
-			text-transform: uppercase;
-			text-align: center;
-			min-width: 315px;
-			border-radius: 30px;
-			background-color: var(--light-violet);
-			border: 2px solid var(--light-violet);
 			box-sizing: border-box;
 			
 			&:hover,
 			&:focus,
 			&:active {
-				background-color: var(--mid-violet);
-				border-color: var(--mid-violet);
+				.button-text {
+					background-color: var(--mid-violet);
+					border-color: var(--mid-violet);
+				}
 				
-				& + .arrow-icon {
+				.arrow-icon {
 					rotate: -45deg;
 					background-color: var(--yellow);
 					background-image: url('https://uni-luma.com/wp-content/uploads/2026/04/arrow-black.svg');
 				}
 			}
+		}
+		
+		.button-text {
+			color: var(--white);
+			width: calc(100% - 50px);
+			background-color: var(--light-violet);
+			border: 2px solid var(--light-violet);
+			padding: 12px 24px;
+			text-decoration: none;
+			text-transform: uppercase;
+			text-align: center;
+			border-radius: 30px;
+			transition: all 0.5s ease;
 		}
 		
 		.arrow-icon {
@@ -663,29 +720,41 @@ function global_header() {
 			background-position: center;
 			border-radius: 50%;
 		}
-	}
-	
-	.button_secondary_cta {
-		a.button {
-			display: block;
-			font-size: 18px;
-			line-height: 22px;
-			color: var(--mid-violet);
-			padding: 12px 24px;
-			text-decoration: none;
-			text-transform: uppercase;
-			text-align: center;
-			min-width: 250px;
-			border: 2px solid var(--mid-violet);
-			border-radius: 30px;
-			background-color: var(--white);
-			box-sizing: border-box;
-			
-			&:hover,
-			&:focus,
-			&:active {
-				color: var(--white);
-				background-color: var(--mid-violet);
+		
+		.button_secondary_cta {
+			a.button {
+				.button-text {
+					color: var(--mid-violet);
+					width: 100%;
+					border: 2px solid var(--mid-violet);
+					background-color: var(--white);
+				}
+				
+				&:hover,
+				&:focus,
+				&:active {
+					.button-text {
+						color: var(--white);
+						background-color: var(--mid-violet);
+					}
+				}
+			}
+		}
+		
+		&.primary {
+			a.button {
+				.button-text {
+					font-size: 24px;
+					line-height: 28px;
+					padding-top: 9px;
+					padding-bottom: 9px;
+				}
+			}
+		}
+		
+		&.full-width {
+			.button_cta {
+				width: 100%;
 			}
 		}
 	}
@@ -714,6 +783,10 @@ function global_header() {
 		background-color: var(--black);
 		border-radius: 20px;
 		overflow: hidden;
+	}
+	
+	section {
+		scroll-margin-top: 100px;
 	}
 	
 	@media only screen and (min-width: 1025px) {
@@ -778,7 +851,7 @@ function global_header() {
 				box-shadow: var(--shadow-block);
 				
 				&.active {
-					top: 160px;
+					top: 130px;
 					overflow: hidden;
 				}
 				
@@ -838,29 +911,109 @@ function global_header() {
 		.block-title {
 			font-size: 36px;
 			line-height: 38px;
+			margin-bottom: 60px;
 		}
 		
-		.button_cta {
-			a.button {
-				font-size: 18px;
-				line-height: 20px;
-				padding: 10px;
-				min-width: calc(100% - 44px);
+		.custom-page {
+			padding: 0 20px;
+		}
+		
+		.page-content {
+			padding-bottom: 45px;
+		}
+		
+		section {
+			scroll-margin-top: 50px;
+		}
+		
+		.container_button_cta {
+			.button_cta, .button_secondary_cta {
+				width: 100%;
 			}
 			
-			.arrow-icon {
-				width: 44px;
-				height: 44px;
-				flex-shrink: 0;
+			.button_cta {
+				a.button {
+					.button-text {
+						min-width: calc(100% - 44px);
+						
+						span {
+							display: none;
+						}
+					}
+					
+					.arrow-icon {
+						width: 44px;
+						height: 44px;
+						flex-shrink: 0;
+					}
+				}
+			}
+			
+			a.button {
+				.button-text {
+					padding: 9px;
+				}
+			}
+			
+			&.primary {
+				a.button {
+					.button-text {
+						font-size: 18px;
+						line-height: 22px;
+					}
+				}
 			}
 		}
+	}
+	
+	@media only screen and (max-width: 768px) {
+		.header {
+			margin: 50px auto 30px;
+		}
+	}
+</style>
+
+<!-- Rest Pages-->
+<style>
+	@media only screen and (min-width: 768px) {
+		.site-main {
+			padding: 0 20px;
+			max-width: var(--page-width) !important;
+		}
 		
-		.button_secondary_cta {
-			a.button {
-				font-size: 18px;
-				line-height: 20px;
-				padding: 10px;
-			}
+		.wp-block-woocommerce-cart {
+			padding: 0 20px;
+			max-width: var(--page-width) !important;
+		}
+	}
+	
+	@media only screen and (min-width: 1024px) {
+		.site-main {
+			font-family: var(--font-sans);
+			padding: 0 60px;
+			margin-left: auto;
+			margin-right: auto;
+			box-sizing: content-box;
+		}
+		
+		.wp-block-woocommerce-cart {
+			font-family: var(--font-sans);
+			padding: 0 60px;
+			margin-left: auto;
+			margin-right: auto;
+			box-sizing: content-box;
+		}
+	}
+	
+	@media only screen and (max-width: 768px) {
+		.site-main {
+			padding: 0 20px !important;
+			max-width: 100% !important;
+		}
+		
+		.wp-block-woocommerce-cart {
+			padding: 0 20px !important;
+			max-width: 100% !important;
 		}
 	}
 </style>
@@ -883,19 +1036,19 @@ function global_header() {
 					<a class="nav_link" href="<?php echo home_url(); ?>">Home</a>
 				</li>
 				<li>
-					<a class="nav_link" href="#about_us">Wer wir sind</a>
+					<a class="nav_link" href="/#about_us">Wer wir sind</a>
 				</li>
 				<li>
 					<a class="nav_link" href="/wuwiso/">WU WiSo</a>
 				</li>
 				<li>
-					<a class="nav_link" href="#our_services">Unsere Leistungen</a>
+					<a class="nav_link" href="https://uni-luma.com/#our_services">Unsere Leistungen</a>
 				</li>
 				<li>
-					<a class="nav_link" href="#top_wrapper">FAQ</a>
+					<a class="nav_link" href="/wuwiso/#wiso_faq">FAQ</a>
 				</li>
 				<li>
-					<a class="nav_link" href="/kontakt/">Kontakt</a>
+					<a class="nav_link" href="#contact_us">Kontakt</a>
 				</li>
 			</ul>
 		</nav>
@@ -912,22 +1065,53 @@ function global_header() {
 <!--header script-->
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		// Smooth scroll
-		function smoothScrollPrimary() {
+		
+		// Smooth scroll + close mobile menu
+		function navigation() {
+			const body = document.body;
+			const header = document.querySelector('header');
+			const mobileIcon = header.querySelector('.hamburger-menu');
+			const mobileMenu = header.querySelector('.navigation-main__primary');
+			const overlay = document.querySelector('.overlay-menu');
+			
+			function closeMenu() {
+				mobileMenu.classList.remove('active');
+				header.classList.remove('active');
+				body.classList.remove('active');
+			}
+			
+			function toggleMenu() {
+				mobileMenu.classList.toggle('active');
+				header.classList.toggle('active');
+				body.classList.toggle('active');
+			}
+			
 			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 				anchor.addEventListener('click', function (e) {
+					const target = document.querySelector(this.getAttribute('href'));
+					
+					if (!target) return;
+					
 					e.preventDefault();
 					
-					document.querySelector(this.getAttribute('href')).scrollIntoView({
+					target.scrollIntoView({
 						behavior: 'smooth'
 					});
+					
+					closeMenu();
 				});
 			});
+			
+			// Mobile icon
+			mobileIcon.addEventListener('click', toggleMenu);
+			
+			// Overlay
+			overlay.addEventListener('click', closeMenu);
 		}
 		
-		smoothScrollPrimary()
+		navigation();
 		
-		// Active inks
+		// Active links
 		function activeLink() {
 			const links = document.querySelectorAll(".navigation-main__primary .nav_link");
 			
@@ -949,42 +1133,180 @@ function global_header() {
 		
 		activeLink();
 		
-		activeLink();
-		
-		// Mobile menu
-		function mobileMenu() {
-			const header = document.querySelector('header');
-			const body = document.getElementsByTagName("body")[0];
-			const mobileIcon = header.querySelector('.hamburger-menu');
-			const mobileMenu = header.querySelector('.navigation-main__primary');
-			const overlay = document.querySelector('.overlay-menu');
-			const menuLinks = document.querySelectorAll(".menu a[href^='#']");
+		// Carousel
+		function Carousel() {
+			const track = document.getElementById('carousel-track');
 			
-			menuLinks.forEach(menuLink => {
-				menuLink.addEventListener('click', function (element) {
-					element.preventDefault();
-					mobileMenu.classList.toggle('active');
-					header.classList.toggle('active');
+			if (!track) return;
+			
+			const outer = track.parentElement;
+			const cards = [...track.querySelectorAll('.review-card')];
+			
+			let current = 0;
+			let isDragging = false;
+			let startX = 0;
+			
+			function getVisible() {
+				if (window.innerWidth <= 768) return 1;
+				if (window.innerWidth <= 1024) return 2;
+				return 3;
+			}
+			
+			function getGap() {
+				if (window.innerWidth <= 768) return 12;
+				if (window.innerWidth <= 1024) return 16;
+				return 20;
+			}
+			
+			function getStep() {
+				const cardWidth = cards[0].getBoundingClientRect().width;
+				return cardWidth + getGap();
+			}
+			
+			function getMax() {
+				return Math.max(0, cards.length - getVisible());
+			}
+			
+			function updateCarousel(animate = true) {
+				track.style.transition = animate
+						? "transform .4s cubic-bezier(.4,0,.2,1)"
+						: "none";
+				
+				const step = getStep();
+				track.style.transform = `translateX(-${current * step}px)`;
+			}
+			
+			function next() {
+				if (current < getMax()) {
+					current++;
+					updateCarousel();
+				}
+			}
+			
+			function prev() {
+				if (current > 0) {
+					current--;
+					updateCarousel();
+				}
+			}
+			
+			// swipe
+			function startDrag(e) {
+				isDragging = true;
+				startX = e.touches ? e.touches[0].clientX : e.clientX;
+			}
+			
+			function onDrag(e) {
+				if (!isDragging) return;
+				
+				const x = e.touches ? e.touches[0].clientX : e.clientX;
+				const diff = startX - x;
+				
+				if (Math.abs(diff) > 50) {
+					diff > 0 ? next() : prev();
+					isDragging = false;
+				}
+			}
+			
+			function endDrag() {
+				isDragging = false;
+			}
+			
+			// events
+			document.getElementById('next-btn').addEventListener('click', next);
+			document.getElementById('prev-btn').addEventListener('click', prev);
+			
+			outer.addEventListener('mousedown', startDrag);
+			outer.addEventListener('touchstart', startDrag);
+			
+			window.addEventListener('mousemove', onDrag);
+			window.addEventListener('touchmove', onDrag);
+			
+			window.addEventListener('mouseup', endDrag);
+			window.addEventListener('touchend', endDrag);
+			
+			// resize fix
+			window.addEventListener('resize', () => {
+				const max = getMax();
+				if (current > max) current = max;
+				updateCarousel(false);
+			});
+			
+			// init
+			updateCarousel(false);
+		}
+		
+		Carousel();
+		
+		// FAQ
+		function Faq() {
+			document.querySelectorAll('.faq-item').forEach(item => {
+				const q = item.querySelector('.faq-question');
+				const a = item.querySelector('.faq-answer');
+				
+				a.style.height = '0px';
+				
+				q.addEventListener('click', () => {
+					const open = item.classList.contains('open');
+					
+					document.querySelectorAll('.faq-item.open').forEach(i => {
+						closeItem(i);
+					});
+					
+					if (!open) openItem(item);
+				});
+				
+				q.addEventListener('keydown', e => {
+					if (e.key === 'Enter' || e.key === ' ') q.click();
 				});
 			});
 			
-			mobileIcon.addEventListener('click', function () {
-				mobileMenu.classList.toggle('active');
-				header.classList.toggle('active');
-				body.classList.toggle('active');
-			});
+			function openItem(item) {
+				const a = item.querySelector('.faq-answer');
+				item.classList.add('open');
+				
+				a.style.height = a.scrollHeight + 'px';
+				
+				a.addEventListener('transitionend', function handler() {
+					a.style.height = 'auto';
+					a.removeEventListener('transitionend', handler);
+				});
+			}
 			
-			overlay.addEventListener('click', function () {
-				mobileMenu.classList.remove('active');
-				header.classList.remove('active');
-				body.classList.remove('active');
-			});
+			function closeItem(item) {
+				const a = item.querySelector('.faq-answer');
+				
+				a.style.height = a.scrollHeight + 'px';
+				
+				requestAnimationFrame(() => {
+					a.style.height = '0px';
+				});
+				
+				item.classList.remove('open');
+			}
 		}
 		
-		mobileMenu();
+		Faq();
+		
+		// Scroll fade-in
+		function Scroll() {
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(e => {
+					if (e.isIntersecting) {
+						e.target.classList.add('visible');
+						observer.unobserve(e.target);
+					}
+				});
+			}, {threshold: 0.12});
+			document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+		}
+		
+		Scroll();
 	});
 </script>
 <!--HEADER-->
+
+
 
 
 <?php
