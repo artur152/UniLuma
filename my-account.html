@@ -1,0 +1,30 @@
+add_filter('woocommerce_account_menu_items', function ($items) {
+
+return [
+'student-registration' => 'Zum Kurs',
+'dashboard'            => $items['dashboard'],
+'edit-account'         => $items['edit-account'],
+'customer-logout'      => $items['customer-logout'],
+];
+
+});
+
+
+add_action('woocommerce_account_dashboard', function () {
+$user = wp_get_current_user();
+$name = esc_html($user->display_name);
+
+echo "
+<div class='my-account-custom-content'>
+	<h4>Hallo {$name}!</h4>
+	<span>Willkommen bei UniLuma. Wir freuen uns, dich auf deinem Weg zur WU zu begleiten.</span>
+	<a class='my-account-link' href='https://uni-luma.com/my-account/student-registration/'>Zum Kurs</a>
+</div>";
+});
+
+// add_action('template_redirect', function () {
+//     if (is_account_page() && !is_wc_endpoint_url()) {
+//         wp_redirect('/student-registration');
+//         exit;
+//     }
+// });

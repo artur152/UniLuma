@@ -981,23 +981,23 @@ function global_header() {
 				top: -100%;
 				right: 20px;
 				width: calc(100% - 44px);
-				min-width: 320px;
+				max-height: calc(100% - 220px);
 				margin-top: 0;
 				border: 2px dashed var(--light-violet);
 				border-radius: 24px;
 				background: var(--white);
 				transition: all 0.8s ease;
 				box-shadow: var(--shadow-block);
+				overflow: auto;
 				
 				&.active {
 					top: 130px;
-					overflow: hidden;
 				}
 				
 				.menu {
 					flex-direction: column;
 					align-items: center;
-					padding: 90px 20px;
+					padding: 60px 20px;
 					
 					li {
 						margin-bottom: 20px;
@@ -1114,6 +1114,25 @@ function global_header() {
 	@media only screen and (max-width: 768px) {
 		.header {
 			margin: 50px auto 30px;
+			
+			.navigation-main__primary {
+				.menu {
+					padding-top: 40px;
+					padding-bottom: 40px;
+					
+					li {
+						margin-bottom: 10px;
+						
+						a {
+							font-size: 22px;
+							line-height: 26px;
+							padding: 5px 20px;
+							display: block;
+						}
+					}
+				}
+			}
+		}
 		}
 	}
 </style>
@@ -1492,7 +1511,7 @@ function global_header() {
 		}
 	}
 	
-	/*Course page*/
+	/* COURSE PAGE */
 	
 	.courses-template-default {
 		.tutor-wrap-parent {
@@ -1585,6 +1604,18 @@ function global_header() {
 							padding: 0;
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	/* STUDENT-REGISTRATION DASHBOARD */
+	
+	.tutor-container {
+		.tutor-frontend-dashboard-course-progress {
+			.tutor-card-body {
+				.tutor-ratings {
+					display: none;
 				}
 			}
 		}
@@ -1852,6 +1883,185 @@ function global_header() {
 	}
 </style>
 
+<!-- Dashboard-->
+<style>
+	.woocommerce-account {
+		.e-con {
+			max-width: none;
+			padding: 0;
+		}
+		
+		.e-con-inner {
+			padding: 0;
+			margin: 0;
+			max-width: none;
+			
+			.woocommerce {
+				display: flex;
+				flex-direction: row;
+				gap: 30px;
+				
+				&:before,
+				&:after {
+					display: none;
+				}
+			}
+		}
+		
+		form {
+			fieldset {
+				border-color: var(--light-violet-2);
+				border-radius: var(--radius-md);
+			}
+		}
+		
+		.woocommerce-form-row.form-row {
+			margin-bottom: 15px;
+			
+			label {
+				line-height: 1;
+				margin-bottom: 10px;
+			}
+			
+			br {
+				display: none;
+			}
+		}
+		
+		.woocommerce-MyAccount-navigation,
+		.woocommerce-MyAccount-content {
+			padding: 20px;
+			background-color: var(--white);
+			border: 2px dashed var(--light-violet);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow-block);
+			
+			ul {
+				padding: 0;
+				
+				li {
+					a {
+						display: block;
+						color: var(--mid-violet);
+						padding: 12px 24px;
+						margin: 24px 0;
+						text-decoration: none;
+						text-transform: uppercase;
+						text-align: center;
+						border-radius: 30px;
+						border: 2px solid var(--mid-violet);
+						background-color: var(--white);
+						transition: all 0.5s ease;
+						
+						&:hover,
+						&:focus,
+						&:active {
+							color: var(--white);
+							background-color: var(--mid-violet);
+						}
+						
+						br {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		
+		.woocommerce-MyAccount-navigation {
+			width: 40%;
+		}
+		
+		.woocommerce-MyAccount-content {
+			width: 60%;
+			
+			.woocommerce-notices-wrapper {
+				& ~ p {
+					display: none;
+				}
+			}
+			
+			.my-account-custom-content {
+				text-align: center;
+				
+				.my-account-link {
+					position: relative;
+					display: block;
+					max-width: 300px;
+					color: var(--white);
+					padding: 12px 24px;
+					margin: 80px auto;
+					text-decoration: none;
+					text-transform: uppercase;
+					text-align: center;
+					border-radius: 30px;
+					border: 2px solid var(--light-violet);
+					background-color: var(--light-violet);
+					transition: all 0.5s ease;
+					
+					&:hover,
+					&:focus,
+					&:active {
+						color: var(--white);
+						background-color: var(--mid-violet);
+						border-color: var(--mid-violet);
+					}
+					
+					&:before {
+						content: '';
+						position: absolute;
+						z-index: 1;
+						bottom: 45px;
+						left: -20%;
+						width: 160px;
+						height: 70px;
+						background-image: url(https://uni-luma.com/wp-content/uploads/2026/04/arrow-big.png);
+						background-size: 100%;
+						background-repeat: no-repeat;
+					}
+				}
+			}
+		}
+		
+		.woocommerce-EditAccountForm.edit-account {
+			.woocommerce-form-row--first,
+			.woocommerce-form-row--last {
+				width: 49%;
+			}
+			
+			.woocommerce-Button {
+				margin-top: 20px;
+			}
+		}
+		
+		.woocommerce-form.woocommerce-form-login,
+		.woocommerce-form.woocommerce-form-register {
+			padding: 20px;
+			background-color: var(--white);
+			border: 2px dashed var(--light-violet);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow-block);
+			
+			.woocommerce-button {
+				margin-top: 20px;
+			}
+		}
+		
+		@media only screen and (max-width: 768px) {
+			.e-con-inner {
+				.woocommerce {
+					flex-direction: column;
+				}
+			}
+			
+			.woocommerce-MyAccount-navigation,
+			.woocommerce-MyAccount-content {
+				width: 100%;
+			}
+		}
+	}
+</style>
+
 <!--header html-->
 <header class="header">
 	<div class="overlay-menu"></div>
@@ -1883,6 +2093,9 @@ function global_header() {
 				</li>
 				<li>
 					<a class="nav_link" href="#contact_us">Kontakt</a>
+				</li>
+				<li>
+					<a class="nav_link" href="/my-account">Mein Profil</a>
 				</li>
 				<li>
 					<a class="nav_link cart-link" href="/cart-2/" title="Warenkorb">
